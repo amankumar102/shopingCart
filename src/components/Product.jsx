@@ -28,7 +28,13 @@ function Product({ post }) {
                 <p className='w-40 text-gray-400 text-[10px] text-left'> {post.description.split(" ").slice(0, 10).join(" ") + "..."} </p>
             </div>
             <div className='h-[180px] '>
-                <img src={post.image.replace("https://fakestoreapi.com", "")} alt="img"
+                <img
+                    src={
+                        import.meta.env.MODE === "development"
+                            ? post.image.replace("https://fakestoreapi.com", "")
+                            : post.image
+                    }
+                    alt="img"
                     className='h-full w-full'
                 />
             </div>
@@ -52,7 +58,7 @@ function Product({ post }) {
                         (
                             <button
                                 onClick={addToCart}
-                                 className='text-gray-700 bg-white border-2 border-gray-700 rounded-full font-semibold
+                                className='text-gray-700 bg-white border-2 border-gray-700 rounded-full font-semibold
                                 text-[12px] p-1 px-3 uppercase 
                                 hover:text-white 
                                 hover:bg-gray-700 transition duration-300 ease-in'

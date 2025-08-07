@@ -4,7 +4,10 @@ import Product from '../components/Product';
 import axios from "axios";
 
 function Home() {
-  const API_URL = "/api/products";
+  const API_URL =
+    import.meta.env.MODE === "development"
+      ? "/api/products"
+      : "https://fakestoreapi.com/products";
   const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
 
